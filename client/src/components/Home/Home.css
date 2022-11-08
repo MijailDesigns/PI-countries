@@ -1,14 +1,17 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 50px;
-    /* background-color: #2196F3; */
-    padding: 10px;
-  }
+.flex-container {
+  background-image: url(../../images/correspondencia-vieja-del-pirata-papel-pintado-de-la-foto-para-el-interior-representación-d-111279991.jpg);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  min-height: 75vh
+}
+
+.loading{
+  margin: auto;
+}
   
-  .grid-container > div {
-    /* background-color: rgba(255, 255, 255, 0.8); */
+  .flex-container > div {
+    width: 30%;
     text-align: center;
-    padding: 20px 20px;
-    /* font-size: 30px; */
+    margin: 30px auto;
   }

@@ -70,10 +70,12 @@ const Home = () => {
     <>
         <Filter search={search} setSearch={setSearch} countries={countries} setCurrentPage={setCurrentPage}  handleSort={handleSort}/>
         <Pagination countries={countries} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-        <div className='grid-container'>
+        <div className='flex-container'>
             {loading ? (
-                <img 
-                    src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921'
+                <img className='loading'
+                    src='https://ftsamuelrobinson.files.wordpress.com/2015/02/planeta-gif-2b924d2.gif'
+                    //src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921'
+                    // src='https://www.google.com/imgres?imgurl=https%3A%2F%2Fftsamuelrobinson.files.wordpress.com%2F2015%2F02%2Fplaneta-gif-2b924d2.gif&imgrefurl=https%3A%2F%2Fftsamuelrobinson.wordpress.com%2Fplaneta-gif-2b924d2%2F&tbnid=ZlsGEQt7T5YlpM&vet=12ahUKEwj04J3FnZr7AhXZeTABHW7IAp8QMygAegUIARDjAQ..i&docid=OpeEkHMRnYJRlM&w=500&h=375&q=gif%20de%20planeta%20girando%20sin%20fondo&ved=2ahUKEwj04J3FnZr7AhXZeTABHW7IAp8QMygAegUIARDjAQ'
                     alt='Cargando..'
                 />
             ) : (

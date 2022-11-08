@@ -1,17 +1,19 @@
 .container{
     display: flex;
     flex-direction: row;
-    max-width: 90vw;
+    /* max-width: 90vw; */
     background-color: aquamarine;
+    overflow: hidden;
 }
 
 .container div{
-    max-height: 80vh;
+    max-height: 85vh; 
 }
 
 .countries{
     height: 93%;
     overflow-y: scroll;
+    background-color: white;
 }
 
 .danger{

@@ -3,9 +3,27 @@
     border-radius: 10rem;
     padding: 0.5rem 1rem;
     color: rgb(33, 25, 25);
-    background-color: #d4ca5c;
+    background-color: #E6B325;
     transition: ease 0.4s;
     font-size: 1rem;
     /* background-color: #5C19AE; */
     cursor: pointer;
-}
+
+}.flex-container {
+    background-image: url(../../images/correspondencia-vieja-del-pirata-papel-pintado-de-la-foto-para-el-interior-representación-d-111279991.jpg);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    min-height: 82vh
+  }
+  
+  .loading{
+    margin: auto;
+  }
+    
+    .flex-container > div {
+      width: 30%;
+      text-align: center;
+      margin: 30px auto;
+    }
+

@@ -116,7 +116,7 @@ const CreateActivity = () => {
   return (
     <div className='container'>
         <div  style={{width: "70%"}}>
-            <div>
+            <div className=''>
                 <h2>Select countries</h2>
             </div>
             <div className='countries'>

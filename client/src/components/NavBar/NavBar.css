@@ -1,7 +1,7 @@
 .navbar {
     padding: 10px;
     width: 100%;
-    background-color: rgb(39, 32, 56);
+    background-color: #61481C;
     display: flex;
     justify-content: space-around;
 
@@ -9,4 +9,5 @@
 
 .navbar a{
     text-decoration: none;
+    color: black;
 }
