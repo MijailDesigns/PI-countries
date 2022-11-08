@@ -2,12 +2,15 @@
     display: flex;
     flex-direction: row;
     /* max-width: 90vw; */
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-image: url('../../images/correspondencia-vieja-del-pirata-papel-pintado-de-la-foto-para-el-interior-representación-d-111279991.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow: hidden;
 }
 
 .container div{
-    max-height: 85vh; 
+    max-height: 88vh; 
 }
 
 .countries{
@@ -19,4 +22,38 @@
 .danger{
     color: red;
     font-weight: bold;
+}
+
+.label{
+    font-weight: 500;
+}
+
+.inputs{
+    margin-left: 10px;
+    width: 60%;
+    border: solid #61481C;
+    border-radius: 10rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    color: #61481C;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.createBtn{
+    margin-top: 5px;
+    margin-left: 10px;
+    border: solid #61481C;
+    border-radius: 10rem;
+    padding: 0.5rem 1rem;
+    color: #FFF;
+    transition: ease 0.4s;
+    font-size: 0.8rem;
+    background-color: #61481C;
+    color: white;
+}
+
+.createBtn:hover{
+    color: #61481C;
+    background-color: #FFF;
 }

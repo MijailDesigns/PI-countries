@@ -124,19 +124,24 @@ const CreateActivity = () => {
             </div>
             
         </div>
-        <div style={{width: "20%"}}>
+        <div style={{width: "30%"}}>
+            <div className='createSection'>
+                <h1>Create your activity</h1>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Name</label>
-                    <input type="text" value={input.name} name='name' onChange={e => handleChange(e)} />
+                    <label className='label'>Which is the activity name?</label>
+                    <br/>
+                    <input className='inputs' type="text" value={input.name} name='name' placeholder='Activity name...' onChange={e => handleChange(e)} />
                     {errors.name && (
                         <p className='danger'>{errors.name}</p>
                     )}
                 </div>
                 
                 <div>
-                    <label>Difficulty</label>
-                    <select name='difficulty' onChange={e => handleChange(e)}>
+                    <label className='label'>Difficulty</label>
+                    <br/>
+                    <select className='inputs' name='difficulty' onChange={e => handleChange(e)}>
                         <option  name="DEFAULT" disabled selected>Select Difficulty</option>
                         <option value="1" selected={input.difficulty === "1" ? true : false}>1</option>
                         <option value="2" selected={input.difficulty === "2" ? true : false}>2</option>
@@ -150,16 +155,18 @@ const CreateActivity = () => {
                 </div>
                 
                 <div>
-                    <label>Duration</label>
-                    <input type="number" min={1} name='duration' placeholder='Select hours'  onChange={e => handleChange(e)}/>
+                    <label className='label'>How long is going to take?</label>
+                    <br/>
+                    <input className='inputs' type="number" min={1} name='duration' placeholder='Select hours'  onChange={e => handleChange(e)}/>
                     {errors.duration && (
                         <p className='danger'>{errors.duration}</p>
                     )}
                 </div>
                 
                 <div>
-                    <label>Season</label>
-                    <select name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
+                    <label className='label'>Season</label>
+                    <br/>
+                    <select className='inputs' name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
                         <option  value="DEFAULT" disabled selected>Select Season</option>
                         <option value="Winter" name="Winter" selected={input.season === "Winter" ? true : false}>Winter</option>
                         <option value="Spring" name="Spring" selected={input.season === "Spring" ? true : false}>Spring</option>
@@ -172,8 +179,9 @@ const CreateActivity = () => {
                 </div>
 
                 <div>
-                    <label>Countries: </label>
-                    <input type='text' placeholder='Look for the country' onChange={handleLook} />
+                    <label className='label'>Which are the countries where is going to be available?</label>
+                    <br/>
+                    <input className='inputs' type='text' placeholder='Look for the country' onChange={handleLook} />
                     {input.country?.map((el, index) => <p>{el} <button 
                         type='button' 
                         onClick={() => handleDelete(el)}>X
@@ -184,7 +192,7 @@ const CreateActivity = () => {
                     )}
                 </div>
                 
-                <button type='submit'>Create Activity</button>
+                <button className='createBtn' type='submit'>Create Activity</button>
             </form>
             
         </div>
