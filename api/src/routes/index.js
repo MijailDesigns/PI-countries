@@ -28,7 +28,7 @@ router.get('/countries', async(req, res) => {
                 whereC.name = {[Op.iLike]: `%${name}%`}
             }
         if (continent) {
-            whereC.continent = continent;
+            whereC.continent = {[Op.iLike]: continent};
         }
         
         condition.where= whereC;

@@ -1,11 +1,13 @@
 import React from 'react'
 import './CountryDetail.css'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCountryDetail } from '../../redux/actions';
 
 const CountryDetail = (props) => {
+
+    let history = useHistory();
 
     const {id} = useParams();
     console.log(id);
@@ -20,7 +22,12 @@ const CountryDetail = (props) => {
   return (
     <div className='detailContainer'>
         <div className='flag'>
-            <img src={detail.flag} alt={detail.name} style={{height: '450px'}}/>
+            <div>
+                <button onClick={() => {history.goBack()}}>Go back</button>
+            </div>
+            <div>
+                <img src={detail.flag} alt={detail.name} style={{height: '450px'}}/>
+            </div>
         </div>
         <div>
             <h1>{detail.name} ({detail.id})</h1>

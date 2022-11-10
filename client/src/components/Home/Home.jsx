@@ -2,6 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import { getCountries, orderBy } from '../../redux/actions';
 import CardCountry from '../CardCountry/CardCountry';
 import Filter from '../Filter/Filter';
@@ -10,18 +11,39 @@ import './Home.css'
 
 const Home = () => {
 
+    // let location = useLocation();
+    // console.log(location)
+
+    let {search} = useLocation();
+    let query = new URLSearchParams(search);
+    console.log(query.toString());
+    let name = query.get("name");
+    let continent = query.get("continent");
+    let activity = query.get("activity");
+    let page = query.get("page");
+    let order = query.get("order");
+    
+
+    console.log(order);
+
+    let history = useHistory();
+    // console.log(name, continent)
+    // console.log(history)
+
+    
+
     const dispatch = useDispatch();
     const countries = useSelector(state => state.countries);
     const loading = useSelector(state => state.loading);
 
-    let [search, setSearch] = useState({
-        name: "",
-        continent: "",
-        activity: ""
+    let [searchN, setSearchN] = useState({
+        name: name || "",
+        continent: continent || "",
+        activity: activity || ""
     });
 
     //pagination
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(5);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     
     let last = 9 + ((currentPage - 1) * itemsPerPage);
@@ -36,7 +58,12 @@ const Home = () => {
         }
     }
     
-    const[orden, setOrden] = useState ('');
+    const[orden, setOrden] = useState (order || 'default');
+
+    // useEffect(() => {
+    //     setCurrentPage(page || 1)
+    //     dispatch(getCountries(searchN))
+    // }, []);
 
     useEffect(() => {
         //dispatch(getCountries(search));
@@ -44,12 +71,11 @@ const Home = () => {
     }, [currentPage]);
 
     useEffect(() => {
-        setCurrentPage(1)
-        dispatch(getCountries(search))
-        
-    }, [dispatch, search]);
+        setCurrentPage(Number(page)  || 1)
+        dispatch(getCountries(searchN))
+    }, [dispatch, searchN, page]);
 
-    console.log(countries)
+    //console.log(countries)
     // console.log(countries.length)
     // // console.log(countriesToRender)
     // console.log(currentPage, 'page')
@@ -62,13 +88,16 @@ const Home = () => {
         dispatch(orderBy(e.target.value));
         
         setOrden(`Ordenado ${e.target.value}`) // setOrden es un estado local que en un inicio va a estar vacio, para cuando seteo en la pagina 1, me modifica el estado local y renderiza
+        query.set(e.target.name, e.target.value)
+        history.push({search: query.toString()})
+
     };
     
 
 
   return (
     <>
-        <Filter search={search} setSearch={setSearch} countries={countries} setCurrentPage={setCurrentPage}  handleSort={handleSort}/>
+        <Filter searchN={searchN} setSearchN={setSearchN} countries={countries} setCurrentPage={setCurrentPage}  handleSort={handleSort}/>
         <Pagination countries={countries} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <div className='flex-container'>
             {loading ? (

@@ -11,6 +11,7 @@
 
 }.flex-container {
     background-image: url(../../images/correspondencia-vieja-del-pirata-papel-pintado-de-la-foto-para-el-interior-representación-d-111279991.jpg);
+    background-size: cover;
     display: flex;
     flex-wrap: wrap;
     padding: 10px;

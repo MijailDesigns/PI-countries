@@ -2,6 +2,7 @@ import { GET_COUNTRIES, ORDER_BY, GET_COUNTRY_DETAIL, GET_COUNTRY_FOR_ACTIVITY, 
 
 const inicialState = {
     countries: [],
+    countriesDefault:[],
     loading: false,
     activities: [],
     continent: [],
@@ -14,7 +15,8 @@ const rootReducer = (state = inicialState, action) => {
             return {
                 ...state,
                 loading: false,
-                countries: action.payload
+                countries: action.payload,
+                countriesDefault: action.payload
             }
         case "LOADING": 
             return {
@@ -23,8 +25,11 @@ const rootReducer = (state = inicialState, action) => {
             }
         case ORDER_BY:
             let {payload} = action
-            let paises = state.countries
+            let paises = [...state.countries]
             const order = (payload, countries) => {
+                if(payload === "default"){
+                    return state.countriesDefault;
+                }
                 if (payload === 'ascAlp') {
                     return countries.sort(function(a, b) {
                         if(a.name > b.name) {
