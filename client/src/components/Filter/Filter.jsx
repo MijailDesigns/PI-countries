@@ -18,6 +18,7 @@ const Filter = ({searchN, setSearchN, countries, setCurrentPage, handleSort}) =>
           ...searchN,
           [e.target.name]: e.target.value
         });
+        query.set("page", 1)
         query.set(e.target.name, e.target.value)
         history.push({search: query.toString()})
 

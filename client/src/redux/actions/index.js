@@ -6,6 +6,8 @@ export const GET_COUNTRY_FOR_ACTIVITY="GET_COUNTRY_FOR_ACTIVITY";
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 export const GET_ACTIVITIES="GET_ACTIVITIES";
 export const DELETE_ACTIVITY_BY_ID="DELETE_ACTIVITY_BY_ID";
+export const GET_ACTIVITY_BY_ID="DELETE_ACTIVITY_BY_ID";
+export const UPDATE_ACTIVITY="UPDATE_ACTIVITY";
 
 export function loading (){
     return {
@@ -55,6 +57,21 @@ export const addActivity = (payload) => {
     }
 }
 
+export const updateActivity = (id, payload) => {
+    return async function (dispatch){
+        await fetch(`http://localhost:3001/activities/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(response => response.json())
+        .then(json => dispatch({
+            type: UPDATE_ACTIVITY
+        }))
+        
+    }
+}
+
 // export function addActivity(payload) {
 //     return async function (dispatch) {
 //         const response = await axios.post('http://localhost:3001/activities', payload)
@@ -90,6 +107,8 @@ export const getCountryDetail = (id) => {
         .then(json => dispatch({type: GET_COUNTRY_DETAIL, payload: json})))
     }
 }
+
+
 
 
 

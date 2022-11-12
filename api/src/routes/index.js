@@ -109,6 +109,25 @@ router.get('/activities', async(req, res) => {
     }
 })
 
+router.get('/activities/:id', async(req, res) => {
+    try {
+        const {id} = req.params;
+        const activity = await Activity.findOne({
+            where: {
+                id: id
+            }, 
+            include:{
+                model: Country,
+                attributes: ['name'],
+                through: { attributes: [] },
+            }});
+        res.status(200).json(activity);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json('Se ingreso un id inexistente');
+    }
+});
+
 // [ ] POST /activities:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
 // Crea una actividad turística en la base de datos, relacionada con los países correspondientes
@@ -183,35 +202,5 @@ router.put('/activities/:id', async(req, res) => {
         res.status(400).json('ocurrio un error');
     }
  })
-
-// router.put('/activities/:id', async(req, res) => {
-//    try {
-//     const {id} = req.params;
-//     //const {name, difficulty, duration, season, country} = req.body;
-//     const activityToUpdate = await Activity.findByPk(id);
-//     if (activityToDelete === null) {
-//         return res.json(`No existen la actividad con id: ${id}`)
-//     }
-//     // await Activity.update(
-//     //     {
-//     //         name
-//     //     },
-//     //     {
-//     //         where: {
-//     //             id
-//     //         }
-//     //     }
-//     // );
-//     // countryOfActivity = await Country.findAll({
-//     //     where:{name: country}
-//     // });
-//     // await activityToUpdate.setCountry(countryOfActivity);
-
-//     res.send(activityToUpdate)
-//    } catch (error) {
-//     res.status(400).json(error);
-//    }
-// })
-
 
 module.exports = router;

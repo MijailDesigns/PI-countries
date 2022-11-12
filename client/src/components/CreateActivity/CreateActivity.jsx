@@ -2,10 +2,13 @@ import React from 'react'
 import './CreateActivity.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { addActivity, getCountriesForActivity, getActivities } from '../../redux/actions';
+import { useHistory, useParams } from 'react-router-dom';
+import { addActivity, getCountriesForActivity, getActivities, updateActivity, loading } from '../../redux/actions';
 
 const CreateActivity = () => {
+
+    let {id} = useParams();
+    console.log(id)
 
     const countries = useSelector(state => state.countriesInActivity);
     const activities = useSelector(state => state.activities)
@@ -15,16 +18,18 @@ const CreateActivity = () => {
 
     let activityName = activities.map(e => e.name);
     console.log(activityName);
-    
+    let update = activities.find(e => e.id === id)
+    console.log(update);
+    //console.log(update.countries.map(e => e.name));
 
     const [errors, setErrors] = React.useState({});
 
     const [input, setInput] = useState({
-        name: "",
-        difficulty: "",
-        duration: "",
-        season: "",
-        country: [],
+        name: (update && update.name) || '',
+        difficulty: (update && update.difficulty) || '',
+        duration: (update && update.duration) || '',
+        season: (update && update.season) || '',
+        country: (update && update.countries.map(e => e.name)) || []
     });
 
     const [lookFor, setLookFor] = useState("");
@@ -50,9 +55,8 @@ const CreateActivity = () => {
         return errors;
     };
 
-    
-
     useEffect(() => {
+
         dispatch(getCountriesForActivity(lookFor));
         dispatch(getActivities());
     }, [lookFor])
@@ -111,6 +115,34 @@ const CreateActivity = () => {
         return;
     }
 
+    async function handleSubmit2(e) {
+        e.preventDefault();
+        // setErrors(validate(input));
+        // if (Object.keys(errors).length === 0) {
+        //     dispatch(updateActivity(input))
+        //     alert('Activity updated successfully');
+        //     setInput({
+        //         name: '',
+        //         difficulty: '',
+        //         duration: '',
+        //         season: '',
+        //         country: []
+        //         })
+        //     navigate.push("/activities");
+        // }
+        // return;
+        dispatch(updateActivity(e.target.id, input))
+        alert('Activity updated successfully');
+        setInput({
+            name: '',
+            difficulty: '',
+            duration: '',
+            season: '',
+            country: []
+            })
+        navigate.push("/activities");
+    }
+
     // console.log(activities.map(e => e.name))
 
   return (
@@ -120,15 +152,21 @@ const CreateActivity = () => {
                 <h2>Select countries</h2>
             </div>
             <div className='countries'>
-                {countries?.map(c => <img src={c.flag} alt={c.name} style={{width: "auto", height: "50px", padding: "5px"}} onClick={e => handleClick(e)}/>)}
+                {!countries ? (
+                    <img className='loading'
+                    src='https://ftsamuelrobinson.files.wordpress.com/2015/02/planeta-gif-2b924d2.gif'
+                    alt='Cargando..'
+                />
+                ): (countries?.map(c => <img src={c.flag} alt={c.name} style={{width: "auto", height: "50px", padding: "5px"}} onClick={e => handleClick(e)}/>))}
+                {/* {countries?.map(c => <img src={c.flag} alt={c.name} style={{width: "auto", height: "50px", padding: "5px"}} onClick={e => handleClick(e)}/>)} */}
             </div>
             
         </div>
-        <div style={{width: "30%"}}>
+        <div className='createDiv' style={{width: "30%"}}>
             <div className='createSection'>
-                <h1>Create your activity</h1>
+                <h1>{update ? 'Update' : 'Create'} your activity</h1>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form id={id} onSubmit={!update ? handleSubmit : handleSubmit2}>
                 <div>
                     <label className='label'>Which is the activity name?</label>
                     <br/>
@@ -157,7 +195,7 @@ const CreateActivity = () => {
                 <div>
                     <label className='label'>How long is going to take?</label>
                     <br/>
-                    <input className='inputs' type="number" min={1} name='duration' placeholder='Select hours'  onChange={e => handleChange(e)}/>
+                    <input className='inputs' type="number" min={1} name='duration' value={input.duration} placeholder='Select hours'  onChange={e => handleChange(e)}/>
                     {errors.duration && (
                         <p className='danger'>{errors.duration}</p>
                     )}
@@ -166,7 +204,7 @@ const CreateActivity = () => {
                 <div>
                     <label className='label'>Season</label>
                     <br/>
-                    <select className='inputs' name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
+                    <select value={input.season} className='inputs' name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
                         <option  value="DEFAULT" disabled selected>Select Season</option>
                         <option value="Winter" name="Winter" selected={input.season === "Winter" ? true : false}>Winter</option>
                         <option value="Spring" name="Spring" selected={input.season === "Spring" ? true : false}>Spring</option>
@@ -192,7 +230,8 @@ const CreateActivity = () => {
                     )}
                 </div>
                 
-                <button className='createBtn' type='submit'>Create Activity</button>
+                {!update && <button className='createBtn' type='submit'>Create Activity</button>}
+                {update && <button className='createBtn' type='submit'>Update Activity</button>}
             </form>
             
         </div>

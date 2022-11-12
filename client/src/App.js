@@ -15,15 +15,18 @@ function App() {
       <Route exact path='/'>
         <LandingPage />
       </Route>
-      <Route exact path={['/home','/createActivity', '/activities', '/countryDetail/:id']}>
+      <Route exact path={['/home','/createActivity/:id', '/activities', '/countryDetail/:id']}>
         <NavBar />
       </Route>
       <Route path='/home'>
         <Home />
       </Route>
-      <Route path='/createActivity'>
+      <Route path='/createActivity/:id'>
         <CreateActivity />
       </Route>
+      {/* <Route path='/createActivity'>
+        <CreateActivity />
+      </Route> */}
       <Route path='/activities'>
         <Activities />
       </Route>

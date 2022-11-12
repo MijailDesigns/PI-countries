@@ -1,8 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { getActivityById } from '../../redux/actions';
 import Modal from '../Modal/Modal';
 
+
 const ActivityCard = ({handleDelete, id, name, difficulty, duration, season, countries}) => {
+
+    let dispatch = useDispatch();
+    let history = useHistory();
 
     const [show, setShow] = useState(false)
 
@@ -24,7 +31,13 @@ const ActivityCard = ({handleDelete, id, name, difficulty, duration, season, cou
         {/* {el.countries.map(el => <h3>{el.name}</h3>)}
         <button className='button' onClick={() => {dispatch(deleteActivity(el.id)); dispatch(getActivities())}}>Delete</button>  */}
         {countries.map(el => <h3>{el.name}</h3>)}
-        <button className='button' onClick={(e) => handleShow(e)}>Delete</button> 
+        <div>
+          <button value={id} className='button' >
+            <Link to={`/createActivity/${id}`}>Update</Link>
+            {/* Update */}
+          </button>
+          <button className='button' onClick={(e) => handleShow(e)}>Delete</button>
+        </div>
         {show && <Modal name={name} id={id} handleHide={handleHide} handleDelete={handleDelete} />}
     </div>
   )
