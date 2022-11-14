@@ -1,26 +1,33 @@
 .container{
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
-    /* max-width: 90vw; */
-    /* background-color: aquamarine; */
-    background-image: url('../../images/correspondencia-vieja-del-pirata-papel-pintado-de-la-foto-para-el-interior-representación-d-111279991.jpg');
+    background-image: url('../../images/fondo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
 }
 
-.container div{
-    max-height: 88vh; 
+
+
+.title{
+    color: white;
 }
 
 .createDiv{
-    height: 88vh; 
+    height: 100vh; 
 }
 
 .countries{
-    height: 93%;
+    height: 80vh;
+    margin: 0 30px;
     overflow-y: scroll;
-    background-color: white;
+    background-color: rgb(19 59 76 / 50%);
+    /* background-color: white; */
+}
+
+.flag:disabled{
+    opacity: 0.4;
 }
 
 .danger{
@@ -30,6 +37,7 @@
 
 .label{
     font-weight: 500;
+    color: white;
 }
 
 .inputs{
@@ -44,6 +52,20 @@
     box-sizing: border-box;
 }
 
+.selectedCountries{
+    height: 60px;
+    overflow-y: auto;
+}
+
+.textCountry{
+    font-weight: bold;
+    color: white;   
+}
+
+.btnCountry{
+    font-weight: 500;
+}
+
 .createBtn{
     margin-top: 5px;
     margin-left: 10px;
@@ -55,6 +77,12 @@
     font-size: 0.8rem;
     background-color: #61481C;
     color: white;
+}
+
+.createBtn:disabled{
+    border: solid rgba(97, 72, 28, 0.4);
+    background-color: rgba(97, 72, 28, 0.4);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .createBtn:hover{

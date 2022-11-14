@@ -1,4 +1,5 @@
 import React from 'react';
+import x from './ActivityCard.module.css'
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
@@ -22,8 +23,8 @@ const ActivityCard = ({handleDelete, id, name, difficulty, duration, season, cou
     }
 
   return (
-    <div key={id} className='cardActivity'>
-        <h3>{name}</h3>
+    <div key={id} className={x.cardContainer}>
+        <h2>{name}</h2>
         <h3>Difficulty: {difficulty}/5</h3>
         <h3>Duration: {duration} hours</h3>
         <h3>Season: {season}</h3>
@@ -32,11 +33,11 @@ const ActivityCard = ({handleDelete, id, name, difficulty, duration, season, cou
         <button className='button' onClick={() => {dispatch(deleteActivity(el.id)); dispatch(getActivities())}}>Delete</button>  */}
         {countries.map(el => <h3>{el.name}</h3>)}
         <div>
-          <button value={id} className='button' >
+          <button className={x.button} value={id} >
             <Link to={`/createActivity/${id}`}>Update</Link>
             {/* Update */}
           </button>
-          <button className='button' onClick={(e) => handleShow(e)}>Delete</button>
+          <button className={x.button} onClick={(e) => handleShow(e)}>Delete</button>
         </div>
         {show && <Modal name={name} id={id} handleHide={handleHide} handleDelete={handleDelete} />}
     </div>

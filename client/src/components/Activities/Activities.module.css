@@ -1,0 +1,22 @@
+
+.flexContainer {
+    background-image: url(../../images/fondo.jpg);
+    height: 100vh;
+    /* margin-top: 50px; */
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
+    min-height: 82vh
+  }
+  
+.loading{
+  margin: auto;
+}
+  
+.flexContainer > div {
+  width: 20%;
+  text-align: center;
+  margin: 30px auto;
+}
+

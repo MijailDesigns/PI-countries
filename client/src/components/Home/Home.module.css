@@ -1,0 +1,24 @@
+.fondo{
+  background-image: url(../../images/fondo.jpg);
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.flexContainer {
+  /* background-image: url(../../images/fondo.jpg); */
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  padding-top: 0px;
+  min-height: 75vh
+}
+
+.loading{
+  margin: auto;
+}
+  
+  .flexContainer > div {
+    width: 20%;
+    text-align: center;
+    margin: 10px auto;
+  }

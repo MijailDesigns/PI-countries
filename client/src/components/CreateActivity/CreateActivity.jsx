@@ -1,5 +1,5 @@
 import React from 'react'
-import './CreateActivity.css'
+import y from './CreateActivity.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -20,7 +20,6 @@ const CreateActivity = () => {
     console.log(activityName);
     let update = activities.find(e => e.id === id)
     console.log(update);
-    //console.log(update.countries.map(e => e.name));
 
     const [errors, setErrors] = React.useState({});
 
@@ -146,40 +145,41 @@ const CreateActivity = () => {
     // console.log(activities.map(e => e.name))
 
   return (
-    <div className='container'>
+    <div className={y.container}>
         <div  style={{width: "70%"}}>
             <div className=''>
-                <h2>Select countries</h2>
+                <h2 className={y.title}>Select countries</h2>
             </div>
-            <div className='countries'>
+            <div className={y.countries}>
                 {!countries ? (
-                    <img className='loading'
+                    <img className={y.loading}
                     src='https://ftsamuelrobinson.files.wordpress.com/2015/02/planeta-gif-2b924d2.gif'
                     alt='Cargando..'
                 />
-                ): (countries?.map(c => <img src={c.flag} alt={c.name} style={{width: "auto", height: "50px", padding: "5px"}} onClick={e => handleClick(e)}/>))}
-                {/* {countries?.map(c => <img src={c.flag} alt={c.name} style={{width: "auto", height: "50px", padding: "5px"}} onClick={e => handleClick(e)}/>)} */}
+                ): (countries?.map(c => <img src={c.flag} alt={c.name} 
+                    style={{width: "auto", height: "50px", padding: "5px", opacity: input.country.includes(c.name) ? "0.4" : "1"}} 
+                onClick={e => handleClick(e)}/>))}
             </div>
             
         </div>
-        <div className='createDiv' style={{width: "30%"}}>
+        <div className={y.createDiv} style={{width: "30%"}}>
             <div className='createSection'>
-                <h1>{update ? 'Update' : 'Create'} your activity</h1>
+                <h1 className={y.title}>{update ? 'Update' : 'Create'} your activity</h1>
             </div>
             <form id={id} onSubmit={!update ? handleSubmit : handleSubmit2}>
                 <div>
-                    <label className='label'>Which is the activity name?</label>
+                    <label className={y.label}>Which is the activity name?</label>
                     <br/>
-                    <input className='inputs' type="text" value={input.name} name='name' placeholder='Activity name...' onChange={e => handleChange(e)} />
+                    <input className={y.inputs} type="text" value={input.name} name='name' placeholder='Activity name...' onChange={e => handleChange(e)} />
                     {errors.name && (
-                        <p className='danger'>{errors.name}</p>
+                        <p className={y.danger}>{errors.name}</p>
                     )}
                 </div>
                 
                 <div>
-                    <label className='label'>Difficulty</label>
+                    <label className={y.label}>Difficulty</label>
                     <br/>
-                    <select className='inputs' name='difficulty' onChange={e => handleChange(e)}>
+                    <select className={y.inputs} name='difficulty' onChange={e => handleChange(e)}>
                         <option  name="DEFAULT" disabled selected>Select Difficulty</option>
                         <option value="1" selected={input.difficulty === "1" ? true : false}>1</option>
                         <option value="2" selected={input.difficulty === "2" ? true : false}>2</option>
@@ -188,23 +188,23 @@ const CreateActivity = () => {
                         <option value="5" selected={input.difficulty === "5" ? true : false}>5</option>
                     </select> 
                     {errors.difficulty && (
-                        <p className='danger'>{errors.difficulty}</p>
+                        <p className={y.danger}>{errors.difficulty}</p>
                     )}
                 </div>
                 
                 <div>
-                    <label className='label'>How long is going to take?</label>
+                    <label className={y.label}>How long is going to take?</label>
                     <br/>
-                    <input className='inputs' type="number" min={1} name='duration' value={input.duration} placeholder='Select hours'  onChange={e => handleChange(e)}/>
+                    <input className={y.inputs} type="number" min={1} name='duration' value={input.duration} placeholder='Select hours'  onChange={e => handleChange(e)}/>
                     {errors.duration && (
-                        <p className='danger'>{errors.duration}</p>
+                        <p className={y.danger}>{errors.duration}</p>
                     )}
                 </div>
                 
                 <div>
-                    <label className='label'>Season</label>
+                    <label className={y.label}>Season</label>
                     <br/>
-                    <select value={input.season} className='inputs' name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
+                    <select value={input.season} className={y.inputs} name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
                         <option  value="DEFAULT" disabled selected>Select Season</option>
                         <option value="Winter" name="Winter" selected={input.season === "Winter" ? true : false}>Winter</option>
                         <option value="Spring" name="Spring" selected={input.season === "Spring" ? true : false}>Spring</option>
@@ -212,26 +212,30 @@ const CreateActivity = () => {
                         <option value="Autumn" name="Spring" selected={input.season === "Autumn" ? true : false}>Autumn</option>
                     </select>
                     {errors.season && (
-                        <p className='danger'>{errors.season}</p>
+                        <p className={y.danger}>{errors.season}</p>
                     )}
                 </div>
 
                 <div>
-                    <label className='label'>Which are the countries where is going to be available?</label>
+                    <label className={y.label}>Which are the countries where is going to be available?</label>
                     <br/>
-                    <input className='inputs' type='text' placeholder='Look for the country' onChange={handleLook} />
-                    {input.country?.map((el, index) => <p>{el} <button 
-                        type='button' 
-                        onClick={() => handleDelete(el)}>X
-                    </button>
-                    </p>)}
+                    <input className={y.inputs} type='text' placeholder='Look for the country' onChange={handleLook} />
+                    <div className={y.selectedCountries}>
+                        {input.country?.map((el, index) => <p className={y.textCountry}>{el} <button 
+                            className={y.btnCountry}
+                            type='button' 
+                            onClick={() => handleDelete(el)}>X
+                        </button>
+                        </p>)}
+                    </div>
+                    
                     {errors.country && (
-                        <p className='danger'>{errors.country}</p>
+                        <p className={y.danger}>{errors.country}</p>
                     )}
                 </div>
                 
-                {!update && <button className='createBtn' type='submit'>Create Activity</button>}
-                {update && <button className='createBtn' type='submit'>Update Activity</button>}
+                {!update && <button className={y.createBtn} type='submit' disabled={Object.keys(errors).length > 0 || input.name === "" ? true : false}>Create Activity</button>}
+                {update && <button className={y.createBtn} type='submit'>Update Activity</button>}
             </form>
             
         </div>

@@ -7,12 +7,9 @@ import { getCountries, orderBy } from '../../redux/actions';
 import CardCountry from '../CardCountry/CardCountry';
 import Filter from '../Filter/Filter';
 import Pagination from '../Pagination/Pagination';
-import './Home.css'
+import h from './Home.module.css'
 
 const Home = () => {
-
-    // let location = useLocation();
-    // console.log(location)
 
     let {search} = useLocation();
     let query = new URLSearchParams(search);
@@ -27,10 +24,6 @@ const Home = () => {
     console.log(order);
 
     let history = useHistory();
-    // console.log(name, continent)
-    // console.log(history)
-
-    
 
     const dispatch = useDispatch();
     const countries = useSelector(state => state.countries);
@@ -60,13 +53,7 @@ const Home = () => {
     
     const[orden, setOrden] = useState (order || 'default');
 
-    // useEffect(() => {
-    //     setCurrentPage(page || 1)
-    //     dispatch(getCountries(searchN))
-    // }, []);
-
     useEffect(() => {
-        //dispatch(getCountries(search));
         changeItemsPerPage(currentPage)
     }, [currentPage]);
 
@@ -75,19 +62,14 @@ const Home = () => {
         dispatch(getCountries(searchN))
     }, [dispatch, searchN, page]);
 
-    //console.log(countries)
-    // console.log(countries.length)
-    // // console.log(countriesToRender)
-    // console.log(currentPage, 'page')
-    // console.log(first, last)
-    // //console.log(countries.slice(0, 20))
+    
 
     function handleSort (e) {
         e.preventDefault();
-        setCurrentPage(1); // cuando hago el ordenamiento lo hago desde la pagina 1, 
+        setCurrentPage(1); 
         dispatch(orderBy(e.target.value));
         
-        setOrden(`Ordenado ${e.target.value}`) // setOrden es un estado local que en un inicio va a estar vacio, para cuando seteo en la pagina 1, me modifica el estado local y renderiza
+        setOrden(`Ordenado ${e.target.value}`) 
         query.set(e.target.name, e.target.value)
         history.push({search: query.toString()})
 
@@ -96,15 +78,16 @@ const Home = () => {
 
 
   return (
-    <>
-        <Filter searchN={searchN} setSearchN={setSearchN} countries={countries} setCurrentPage={setCurrentPage}  handleSort={handleSort}/>
-        <Pagination countries={countries} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-        <div className='flex-container'>
+    <div className={h.fondo}>
+        <div style={{marginTop: '50px'}}>
+            <Filter searchN={searchN} setSearchN={setSearchN} countries={countries} setCurrentPage={setCurrentPage}  handleSort={handleSort}/>
+            <Pagination countries={countries} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        </div>
+        
+        <div className={h.flexContainer}>
             {loading ? (
-                <img className='loading'
+                <img className={h.loading}
                     src='https://ftsamuelrobinson.files.wordpress.com/2015/02/planeta-gif-2b924d2.gif'
-                    //src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921'
-                    // src='https://www.google.com/imgres?imgurl=https%3A%2F%2Fftsamuelrobinson.files.wordpress.com%2F2015%2F02%2Fplaneta-gif-2b924d2.gif&imgrefurl=https%3A%2F%2Fftsamuelrobinson.wordpress.com%2Fplaneta-gif-2b924d2%2F&tbnid=ZlsGEQt7T5YlpM&vet=12ahUKEwj04J3FnZr7AhXZeTABHW7IAp8QMygAegUIARDjAQ..i&docid=OpeEkHMRnYJRlM&w=500&h=375&q=gif%20de%20planeta%20girando%20sin%20fondo&ved=2ahUKEwj04J3FnZr7AhXZeTABHW7IAp8QMygAegUIARDjAQ'
                     alt='Cargando..'
                 />
             ) : (
@@ -121,7 +104,7 @@ const Home = () => {
                 )})
             )}
         </div>
-    </>
+    </div>
   )
 }
 

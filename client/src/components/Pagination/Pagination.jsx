@@ -1,4 +1,5 @@
 import React from 'react'
+import p from './Pagination.module.css'
 import { useHistory, useLocation } from 'react-router-dom';
 
 const Pagination = ({countries, currentPage, setCurrentPage}) => {
@@ -54,17 +55,17 @@ const Pagination = ({countries, currentPage, setCurrentPage}) => {
 
   return (
     <div>
-      <button onClick={prevHandler} style={ currentPage === 1 ? {display:"none"} : {display:"inline"}}>Prev</button>
+      <button className={p.button} onClick={prevHandler} style={ currentPage === 1 ? {display:"none"} : {display:"inline"}}>Prev</button>
       {buttons.map((el) => {
         if(el <= currentPage + 2 && el >= currentPage){
           return (
-          <button value={el}  onClick={e => numHandler(e)} key={el} disabled={currentPage === el ? true : false}>{el}</button>
+          <button className={p.button} value={el}  onClick={e => numHandler(e)} key={el} disabled={currentPage === el ? true : false}>{el}</button>
           )
         }else if(el >= (currentPage -2) && el <= currentPage){
-          return(<button value={el}  onClick={e => numHandler(e)} key={el} disabled={currentPage === el ? true : false}>{el}</button>)
+          return(<button className={p.button} value={el}  onClick={e => numHandler(e)} key={el} disabled={currentPage === el ? true : false}>{el}</button>)
         }
       })}
-      <button onClick={nextHandler} style={ currentPage === amountPage ? {display:"none"} : {display:"inline"}}>Next</button>
+      <button className={p.button} onClick={nextHandler} style={ currentPage === amountPage ? {display:"none"} : {display:"inline"}}>Next</button>
     </div>
   )
 }

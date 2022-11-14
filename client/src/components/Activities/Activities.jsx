@@ -1,5 +1,5 @@
 import React from 'react'
-import './Activities.css'
+import a from './Activities.module.css'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, deleteActivity } from '../../redux/actions';
@@ -19,10 +19,8 @@ const Activities = () => {
         dispatch(getActivities())
     }
 
-    //console.log(activities);
-
   return (
-    <div className='flex-container'>
+    <div className={a.flexContainer}>
         {activities.map((el, index) => {
             return(
                 <ActivityCard handleDelete={handleDelete} id={el.id} name={el.name} difficulty={el.difficulty} duration={el.duration} season={el.season} countries={el.countries} />
