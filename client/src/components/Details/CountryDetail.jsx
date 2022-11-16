@@ -26,7 +26,7 @@ const CountryDetail = (props) => {
                 <button className={d.button} onClick={() => {history.goBack()}}>Go back</button>
             </div>
             <div>
-                <img src={detail.flag} alt={detail.name} style={{height: '450px'}}/>
+                <img src={detail.flag} alt={detail.name} className={d.imgFlag} />
             </div>
         </div>
         <div className={d.container}>

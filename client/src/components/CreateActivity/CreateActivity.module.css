@@ -23,7 +23,6 @@
     margin: 0 30px;
     overflow-y: scroll;
     background-color: rgb(19 59 76 / 50%);
-    /* background-color: white; */
 }
 
 .flag:disabled{
@@ -88,4 +87,10 @@
 .createBtn:hover{
     color: #61481C;
     background-color: #FFF;
+}
+
+@media screen and (max-width: 600px) {
+    .container{
+        margin-top: 100px;
+    }
 }

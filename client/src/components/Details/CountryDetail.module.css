@@ -1,5 +1,4 @@
 .detailContainer{
-    /* margin-top: 50px; */
     background-image: url(../../images/fondo.jpg);
     height: 100vh;
     box-sizing: border-box;
@@ -13,6 +12,10 @@
 .flag{
     box-sizing: border-box;
     padding: 30px;
+}
+
+.imgFlag{
+    height: 450px;
 }
 
 .button{
@@ -43,4 +46,35 @@
     overflow: auto;
     max-height: 470px;
 }
+
+@media screen and (max-width: 1350px) {
+    .imgFlag{
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .detailContainer{
+        padding-top: 50px;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .containerText{
+        margin: 30px 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .detailContainer{
+        padding-top: 100px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .imgFlag{
+        height: 250px;
+    }
+}
+
 

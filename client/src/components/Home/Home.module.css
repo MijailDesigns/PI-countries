@@ -1,11 +1,8 @@
 .fondo{
   background-image: url(../../images/fondo.jpg);
-  /* background-repeat: no-repeat;
-  background-size: cover; */
 }
 
 .flexContainer {
-  /* background-image: url(../../images/fondo.jpg); */
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
@@ -21,4 +18,28 @@
     width: 20%;
     text-align: center;
     margin: 10px auto;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .flexContainer > div {
+      width: 30%;
+      text-align: center;
+      margin: 10px auto;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .flexContainer > div {
+      width: 40%;
+      text-align: center;
+      margin: 10px auto;
+    }
+  }
+
+  @media screen and (max-width: 580px) {
+    .flexContainer > div {
+      width: 80%;
+      text-align: center;
+      margin: 10px auto;
+    }
   }

@@ -142,8 +142,6 @@ const CreateActivity = () => {
         navigate.push("/activities");
     }
 
-    // console.log(activities.map(e => e.name))
-
   return (
     <div className={y.container}>
         <div  style={{width: "70%"}}>
@@ -205,7 +203,7 @@ const CreateActivity = () => {
                     <label className={y.label}>Season</label>
                     <br/>
                     <select value={input.season} className={y.inputs} name='season' defaultValue={"DEFAULT"} onChange={e => handleChange(e)}>
-                        <option  value="DEFAULT" disabled selected>Select Season</option>
+                        <option  value="" disabled selected>Select Season</option>
                         <option value="Winter" name="Winter" selected={input.season === "Winter" ? true : false}>Winter</option>
                         <option value="Spring" name="Spring" selected={input.season === "Spring" ? true : false}>Spring</option>
                         <option value="Summer" name="Spring" selected={input.season === "Summer" ? true : false}>Summer</option>
