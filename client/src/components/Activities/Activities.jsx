@@ -12,7 +12,7 @@ const Activities = () => {
 
     useEffect(() => {
         dispatch(getActivities())
-    }, [dispatch, activities])
+    }, [])
 
     const handleDelete = (e) => {
         dispatch(deleteActivity(e.target.id)); 
@@ -23,7 +23,7 @@ const Activities = () => {
     <div className={a.flexContainer}>
         {activities.map((el, index) => {
             return(
-                <ActivityCard handleDelete={handleDelete} id={el.id} name={el.name} difficulty={el.difficulty} duration={el.duration} season={el.season} countries={el.countries} />
+                <ActivityCard handleDelete={handleDelete} key={el.id} id={el.id} name={el.name} difficulty={el.difficulty} duration={el.duration} season={el.season} countries={el.countries} />
             )
         })}
     </div>

@@ -39,7 +39,7 @@ const ActivityCard = ({handleDelete, id, name, difficulty, duration, season, cou
           </button>
           <button className={x.button} onClick={(e) => handleShow(e)}>Delete</button>
         </div>
-        {show && <Modal name={name} id={id} handleHide={handleHide} handleDelete={handleDelete} />}
+        {show && <Modal name={name} key={id} id={id} handleHide={handleHide} handleDelete={handleDelete} />}
     </div>
   )
 }

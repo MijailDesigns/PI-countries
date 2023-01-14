@@ -9,6 +9,7 @@ const Filter = ({searchN, setSearchN, countries, setCurrentPage, handleSort}) =>
     
     let history = useHistory();
     let {search} = useLocation();
+    console.log(useLocation())
     let query = new URLSearchParams(search);
 
     function handleChange(e) {
